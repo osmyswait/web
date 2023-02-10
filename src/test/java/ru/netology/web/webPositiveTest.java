@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class webPositiveTest {
@@ -34,15 +35,16 @@ public class webPositiveTest {
     @AfterEach
     public void afterEach() {
         driver.quit();
+    }
 
         @Test
-        public void test() {
-            driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys(Cеменов Семен-Петр Семенович);
-            driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79373714484");
-            driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-            driver.findElement(By.cssSelector("button.button")).click();
-            var actualText = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-            assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
-        }
+        void test() {
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Владимир-Дмитрий Семенов");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79373714484");
+        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
+        assertEquals(expected, actual);
     }
 }
